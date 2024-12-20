@@ -1,66 +1,61 @@
-## Foundry
+# GameSwift Chain - Smart Contract Examples
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+### Install dependencies
 
-Foundry consists of:
+After you `clone` the repository, go to the project catalog and type:
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+```shell
+$ forge install
+```
 
-## Documentation
+Create a `.env` file with the following variables:
 
-https://book.getfoundry.sh/
+ERC-20:
 
-## Usage
+```shell
+DEPLOYER_PRIVATE_KEY=
 
-### Build
+TOKEN_NAME=
+TOKEN_SYMBOL=
+TOKEN_INITIAL_SUPPLY=
+```
+
+#### Build
 
 ```shell
 $ forge build
 ```
 
-### Test
+#### Test
 
 ```shell
 $ forge test
 ```
 
-### Format
+#### ABI
 
 ```shell
-$ forge fmt
+$ forge inspect Token abi > abi/Token.json
 ```
 
-### Gas Snapshots
+#### Deploy (GameSwift Testnet)
 
 ```shell
-$ forge snapshot
+$ forge script script/DeployToken.s.sol:DeployToken \
+    --rpc-url ${GS_TESTNET_RPC_URL} \
+    --chain-id ${GS_TESTNET_CHAIN_ID} \
+    --broadcast
 ```
 
-### Anvil
+ERC-20: [0x2F8b13C80b771FA1d79266fCe73ef00aDA172DE4](https://testnet.gameswift.io/address/0x2F8b13C80b771FA1d79266fCe73ef00aDA172DE4)
+
+#### Deploy (GameSwift Mainnet)
 
 ```shell
-$ anvil
+$ forge script script/DeployToken.s.sol:DeployToken \
+    --rpc-url ${GS_MAINNET_RPC_URL} \
+    --chain-id ${GS_MAINNET_CHAIN_ID} \
+    --broadcast
 ```
 
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+ERC-20: [0x2F8b13C80b771FA1d79266fCe73ef00aDA172DE4](https://mainnet.gameswift.io/address/0x2F8b13C80b771FA1d79266fCe73ef00aDA172DE4)
